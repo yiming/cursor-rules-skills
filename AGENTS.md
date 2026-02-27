@@ -1,8 +1,7 @@
----
-globs: orders/**/*.md, master-data/**
-alwaysApply: false
----
 # 飯店訂單結構契約
+
+本專案以 .md / .yaml 管理飯店訂單，不使用程式或資料庫。
+操作 `orders/` 或 `master-data/` 下的檔案時，遵守以下約定。
 
 ## 路徑約定
 
@@ -27,3 +26,8 @@ front matter 下方為自由格式需求描述。
 - 不得覆蓋或修改 `*.req.md`
 - 金額必須與 master-data 一致，不得自行編造價格
 - 建議房號必須存在於 room-list.yaml
+
+## Skills
+
+當使用者要求「依訂單產生確認單」「產生任務清單」或處理 orders/*.req.md 時，
+請參照 `.cursor/skills/hotel-order-from-req/SKILL.md` 的流程執行。
