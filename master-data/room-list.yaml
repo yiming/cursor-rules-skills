@@ -1,0 +1,67 @@
+# 房號清單（實際房間：樓層、房號、對應房型）
+# 要排房／指定房號時使用；欄位：room_type=房型 id, floor=樓層, number=房號
+
+rooms:
+  # 標準雙人房 STD-D：3F 共 8 間
+  - room_type: STD-D
+    floor: 3
+    number: "301"
+  - room_type: STD-D
+    floor: 3
+    number: "302"
+  - room_type: STD-D
+    floor: 3
+    number: "303"
+  - room_type: STD-D
+    floor: 3
+    number: "304"
+  - room_type: STD-D
+    floor: 3
+    number: "305"
+  - room_type: STD-D
+    floor: 3
+    number: "306"
+  - room_type: STD-D
+    floor: 3
+    number: "307"
+  - room_type: STD-D
+    floor: 3
+    number: "308"
+  # 豪華雙床房 DEL-T：4F 共 6 間
+  - room_type: DEL-T
+    floor: 4
+    number: "401"
+  - room_type: DEL-T
+    floor: 4
+    number: "402"
+  - room_type: DEL-T
+    floor: 4
+    number: "403"
+  - room_type: DEL-T
+    floor: 4
+    number: "404"
+  - room_type: DEL-T
+    floor: 4
+    number: "405"
+  - room_type: DEL-T
+    floor: 4
+    number: "406"
+  # 家庭四人房 FAM-Q：5F 共 6 間
+  - room_type: FAM-Q
+    floor: 5
+    number: "501"
+  - room_type: FAM-Q
+    floor: 5
+    number: "502"
+  - room_type: FAM-Q
+    floor: 5
+    number: "503"
+  - room_type: FAM-Q
+    floor: 5
+    number: "504"
+  - room_type: FAM-Q
+    floor: 5
+    number: "505"
+  - room_type: FAM-Q
+    floor: 5
+    number: "506"

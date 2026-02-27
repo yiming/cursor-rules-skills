@@ -1,0 +1,29 @@
+---
+description: 飯店訂單資料夾結構、需求檔格式與 master data 位置約定
+globs: "orders/**/*.md,master-data/**/*.yaml,master-data/**/*.csv"
+alwaysApply: false
+---
+
+# 飯店訂單結構約定
+
+## 資料夾與檔案位置
+
+- **master data**：`master-data/` 下，依類型分檔
+  （如 `room-types.yaml`, `room-list.yaml`, `menu.yaml`, `venues.yaml`）。
+- **訂單**：每張訂單為 `orders/` 下的一個 `*.req.md` 檔，檔名即訂單 id
+  （如 `BR250315-001.req.md`）。
+- **需求檔**：檔名格式為 `<id>.req.md`（類型代碼 + 日期 YYMMDD + 序號），
+  內含 YAML front matter 與需求說明。
+
+## 需求檔 .req.md 格式
+
+- 必須有 YAML front matter，建議欄位：
+  - `type`: 訂房 | 訂餐 | 場地
+  - `date`: 訂單/入住/用餐日期（YYYY-MM-DD）
+  - `id`: 訂單編號，與檔名主檔名一致（如 `BR250315-001.req.md` → id 為 `BR250315-001`）
+- front matter 下方為自由格式需求描述（人數、預算、偏好等）。
+
+## 產出文件（由 Skill 或人工產生）
+
+- **產出文件**：與需求檔同目錄 `orders/`，檔名 `<id>-確認單.md`、`<id>-任務.md`
+  （例：`BR250315-001-確認單.md`、`BR250315-001-任務.md`），不覆蓋 `*.req.md`。
