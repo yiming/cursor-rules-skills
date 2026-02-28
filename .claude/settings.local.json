@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:cursor.com)",
+      "WebFetch(domain:alexop.dev)"
+    ]
+  }
+}
