@@ -1,5 +1,5 @@
 ---
-globs: orders/**/*.md, master-data/**
+globs: orders/**/*.md,master-data/**
 alwaysApply: false
 ---
 # 飯店訂單結構契約

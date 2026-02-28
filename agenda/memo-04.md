@@ -155,3 +155,19 @@ Claude Code 不認 `.cursor/` 目錄結構，但透過共用機制，**不需要
 | Skill (SKILL.md) | AI 收到「產生確認單」時，**自動**按模板和計算邏輯執行 | 你不用每次貼模板、教 AI 怎麼算價、提醒品質檢查 |
 
 **一句話：Rule/AGENTS 讓 AI 自動守規矩，Skill 讓 AI 自動按流程做事。你只需要說「產生確認單」。**
+
+---
+# 執行驗證
+- orders\BR250315-001.req.md
+  - 以CURSOR, 開新CHAT: 依這張訂單產生確認單與任務清單
+  - 結果: 成功
+- orders\BR250420-001.req.md 
+  - 以Clause Code : 產生確認單與任務清單
+  - 結果: 成功
+- orders\BR250420-002.req.md 
+  - 先去修改SKILL : D:\dev\test\cursor-rules-skills\.cursor\skills\hotel-order-from-req\SKILL.md
+  - 修改確認單標題: 加飯店名稱
+  - 在cursor原chat指定: 只產生確認單, 不產生任務
+  - 結果: 正確: 只有確認單, 錯誤: 沒有飯店名
+  - 再試: 新增chat, 再下同樣PROMPT
+  - 結果: 標題有加上飯店名
