@@ -14,9 +14,10 @@
 
 ```yaml
 type: 訂房 | 訂餐 | 場地    # 必填
-date: YYYY-MM-DD            # 必填（訂房=入住日）
+date: YYYY-MM-DD            # 必填（訂房=入住日，訂餐=用餐日）
 id: BR250315-001            # 必填，與檔名一致
-guest: 王大明                # 必填，訂房人姓名
+guest: 王大明                # 必填，訂房/訂餐人姓名
+related_order: BR250315-001  # 可選：關聯的訂房單（訂餐用）
 ```
 
 front matter 下方為自由格式需求描述。
@@ -29,4 +30,9 @@ front matter 下方為自由格式需求描述。
 
 ## 處理訂單
 
-當使用者要求處理訂單時，使用 `/process-order [order-id]` 觸發，或委派給 order-clerk 子代理。
+| 訂單類型 | 觸發指令 |
+|---------|---------|
+| 訂房（BR） | `/process-order [order-id]` |
+| 訂餐（DR） | `/process-dining-order [order-id]` |
+
+也可委派給 order-clerk 子代理處理。

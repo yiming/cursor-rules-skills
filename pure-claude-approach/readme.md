@@ -38,6 +38,11 @@ pure-claude-approach/
 │   │   │   └── templates/
 │   │   │       ├── confirmation.md        ← 確認單模板
 │   │   │       └── task-list.md           ← 任務清單模板
+│   │   ├── process-dining-order/
+│   │   │   ├── SKILL.md                   ← 訂餐流程（含低消邏輯）
+│   │   │   └── templates/
+│   │   │       ├── confirmation.md
+│   │   │       └── task-list.md
 │   │   └── check-availability/
 │   │       └── SKILL.md                   ← 查空房（展示動態注入）
 │   └── agents/                            ← 團隊成員
@@ -47,7 +52,8 @@ pure-claude-approach/
 ├── master-data/
 │   ├── CLAUDE.md                          ← 主資料保護規則
 │   ├── room-types.yaml
-│   └── room-list.yaml
+│   ├── room-list.yaml
+│   └── menu.yaml                          ← 餐飲品項、價格、低消規則
 │
 ├── orders/
 │   ├── CLAUDE.md                          ← 訂單結構契約
@@ -58,13 +64,21 @@ pure-claude-approach/
 
 ## 使用方式
 
-### 處理訂單
+### 處理訂房
 
 ```
 /process-order BR250315-001
 ```
 
-流程：order-clerk 在獨立 context 中執行 → 產出確認單 + 任務清單 → auditor 自動驗證
+流程：order-clerk → 讀取需求 → room-types + room-list → 產出 → auditor 驗證
+
+### 處理訂餐
+
+```
+/process-dining-order DR250420-001
+```
+
+流程：order-clerk → 讀取需求 → menu.yaml → 匹配品項 → **低消檢查** → 產出 → auditor 驗證
 
 ### 查空房
 
@@ -76,7 +90,19 @@ Skill 載入時動態掃描現有訂單 + master-data，列出可用房間。
 
 ### 手動處理
 
-也可以用自然語言：「請處理 orders/BR250315-001.req.md，產生確認單和任務」
+也可以用自然語言：「請處理 orders/DR250420-001.req.md，產生確認單和任務」
+
+## 功能複雜度梯度
+
+```
+訂房（簡單）              訂餐（中等）
+─────────────            ─────────────
+房型匹配                  品項匹配
+房價 × 晚數               品項加總
+                         + 逐人低消檢查
+                         + 不足時建議加點
+                         + 關聯訂房單
+```
 
 ## 與舊版的核心差異
 

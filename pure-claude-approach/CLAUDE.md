@@ -33,7 +33,8 @@
 
 | 任務 | 負責人 | 觸發方式 |
 |------|--------|---------|
-| 處理訂單需求 | order-clerk（子代理） | 主動委派，或 `/process-order [id]` |
+| 處理訂房需求 | order-clerk（子代理） | `/process-order [id]` |
+| 處理訂餐需求 | order-clerk（子代理） | `/process-dining-order [id]` |
 | 驗證確認單 | auditor（子代理） | 處理完成後自動委派 |
 | 查詢空房 | `/check-availability` | 使用者直接呼叫 |
 
@@ -48,16 +49,18 @@
 
 ## 處理流程
 
+### 訂房
 ```
 使用者：/process-order BR250315-001
-  │
-  ├─→ order-clerk（子代理，sonnet）
-  │     ├── 讀取需求 → 載入主資料 → 計算匹配 → 產出
-  │     └── 寫入確認單 + 任務清單
-  │
-  └─→ auditor（子代理，haiku）
-        ├── 比對金額、房號、容量
-        └── 回報：✓ 通過 / ✗ 不通過
+  ├─→ order-clerk → 讀取需求 → room-types + room-list → 產出確認單 + 任務清單
+  └─→ auditor → 比對金額、房號、容量 → ✓ / ✗
+```
+
+### 訂餐
+```
+使用者：/process-dining-order DR250420-001
+  ├─→ order-clerk → 讀取需求 → menu.yaml → 匹配品項 → 低消檢查 → 產出
+  └─→ auditor → 比對單價、品項、低消 → ✓ / ✗
 ```
 
 ## 目錄結構
@@ -72,6 +75,11 @@
 │   │   │   └── templates/
 │   │   │       ├── confirmation.md        ← 確認單模板
 │   │   │       └── task-list.md           ← 任務清單模板
+│   │   ├── process-dining-order/           ← /process-dining-order 指令
+│   │   │   ├── SKILL.md                   ← 含低消檢查邏輯
+│   │   │   └── templates/
+│   │   │       ├── confirmation.md
+│   │   │       └── task-list.md
 │   │   └── check-availability/            ← /check-availability 指令
 │   │       └── SKILL.md                   ← 含動態上下文注入
 │   └── agents/
@@ -80,7 +88,8 @@
 ├── master-data/
 │   ├── CLAUDE.md                          ← 主資料保護規則
 │   ├── room-types.yaml
-│   └── room-list.yaml
+│   ├── room-list.yaml
+│   └── menu.yaml                          ← 餐飲品項、價格、低消規則
 ├── orders/
 │   ├── CLAUDE.md                          ← 訂單結構契約
 │   └── ...
