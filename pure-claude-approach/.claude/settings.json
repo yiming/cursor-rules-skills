@@ -1,5 +1,9 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(cat master-data/*)",
+      "Bash(grep -r *建議房號* orders/*)"
+    ],
     "deny": [
       "Edit(orders/*.req.md)",
       "Edit(master-data/*)"

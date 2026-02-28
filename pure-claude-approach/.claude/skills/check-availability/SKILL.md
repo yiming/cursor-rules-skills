@@ -17,7 +17,7 @@ user-invocable: true
 
 ## 已被預訂的房間（從現有確認單中掃描）
 
-!`grep -r "建議房號" orders/*-確認單.md 2>/dev/null || echo "目前無已確認訂單"`
+!`grep -r "建議房號" orders/*-確認單.md`
 
 ## 指示
 

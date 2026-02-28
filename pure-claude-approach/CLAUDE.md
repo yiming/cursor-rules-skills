@@ -12,13 +12,13 @@
                     │   飯店經理 (CLAUDE.md) │  ← 制定政策、分派任務
                     └────────┬────────────┘
                              │
-              ┌──────────────┼──────────────┐
-              ▼              ▼              ▼
-     ┌────────────┐  ┌────────────┐  ┌────────────┐
-     │  訂單處理員  │  │   稽核員    │  │  查詢服務   │
-     │ order-clerk │  │  auditor   │  │ /check-... │
-     │  (sonnet)  │  │  (haiku)   │  │  (skill)   │
-     └────────────┘  └────────────┘  └────────────┘
+         ┌───────────────┬───┴───┬───────────────┐
+         ▼               ▼       ▼               ▼
+  ┌────────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐
+  │  訂單處理員  │  │  稽核員   │  │ 印刷設計師 │  │  查詢服務   │
+  │ order-clerk │  │ auditor  │  │  print-  │  │ /check-... │
+  │  (sonnet)  │  │ (haiku)  │  │ designer │  │  (skill)   │
+  └────────────┘  └──────────┘  └──────────┘  └────────────┘
 ```
 
 ## 全域政策
@@ -35,6 +35,8 @@
 |------|--------|---------|
 | 處理訂房需求 | order-clerk（子代理） | `/process-order [id]` |
 | 處理訂餐需求 | order-clerk（子代理） | `/process-dining-order [id]` |
+| 處理場地需求 | order-clerk（子代理） | `/process-venue-order [id]` |
+| 產生桌牌 prompt | print-designer（子代理） | `/generate-card-prompt [id]` |
 | 驗證確認單 | auditor（子代理） | 處理完成後自動委派 |
 | 查詢空房 | `/check-availability` | 使用者直接呼叫 |
 
@@ -63,6 +65,15 @@
   └─→ auditor → 比對單價、品項、低消 → ✓ / ✗
 ```
 
+### 場地租借
+```
+使用者：/process-venue-order VR250420-001
+  ├─→ order-clerk → 讀取需求 + 名單 → venues.yaml → 場地匹配 → 混合計價 → 桌次安排 → 產出
+  ├─→ auditor → 比對金額、場地容量、桌次人數、餐標 → ✓ / ✗
+  └─→ 使用者：/generate-card-prompt VR250420-001
+        └─→ print-designer → 讀取桌次表 → 產出 card-prompt.md → 交 Cursor+Gemini 產圖
+```
+
 ## 目錄結構
 
 ```
@@ -80,16 +91,25 @@
 │   │   │   └── templates/
 │   │   │       ├── confirmation.md
 │   │   │       └── task-list.md
+│   │   ├── process-venue-order/           ← /process-venue-order 指令
+│   │   │   ├── SKILL.md                   ← 含桌次安排演算法
+│   │   │   └── templates/
+│   │   │       ├── confirmation.md
+│   │   │       └── task-list.md
+│   │   ├── generate-card-prompt/          ← /generate-card-prompt 指令
+│   │   │   └── SKILL.md                   ← AI-to-AI 接力 prompt 產出
 │   │   └── check-availability/            ← /check-availability 指令
 │   │       └── SKILL.md                   ← 含動態上下文注入
 │   └── agents/
 │       ├── order-clerk.md                 ← 訂單處理員（sonnet, Read+Write）
-│       └── auditor.md                     ← 稽核員（haiku, Read-only）
+│       ├── auditor.md                     ← 稽核員（haiku, Read-only）
+│       └── print-designer.md             ← 印刷設計師（sonnet, 桌牌 prompt）
 ├── master-data/
 │   ├── CLAUDE.md                          ← 主資料保護規則
 │   ├── room-types.yaml
 │   ├── room-list.yaml
-│   └── menu.yaml                          ← 餐飲品項、價格、低消規則
+│   ├── menu.yaml                          ← 餐飲品項、價格、低消規則
+│   └── venues.yaml                        ← 場地定義、宴會餐標、加購選項
 ├── orders/
 │   ├── CLAUDE.md                          ← 訂單結構契約
 │   └── ...

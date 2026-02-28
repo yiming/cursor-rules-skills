@@ -1,0 +1,127 @@
+# 賓客名單 VR250420-001
+# 婚宴：張大偉 & 林佳怡
+# 欄位：name=姓名, title=稱謂/職稱, dietary=飲食需求(null=一般), note=備註
+
+event_id: VR250420-001
+updated_at: 2025-04-15
+
+groups:
+  - group: 主桌
+    priority: 1
+    members:
+      - { name: 張大偉, title: 新郎, dietary: null }
+      - { name: 林佳怡, title: 新娘, dietary: null }
+      - { name: 張國強, title: 新郎父親, dietary: null }
+      - { name: 李美玲, title: 新郎母親, dietary: null }
+      - { name: 林志明, title: 新娘父親, dietary: null }
+      - { name: 陳淑惠, title: 新娘母親, dietary: null }
+      - { name: 王教授, title: 證婚人, dietary: null }
+      - { name: 陳董事長, title: 主婚人, dietary: null }
+
+  - group: 男方親友
+    priority: 2
+    members:
+      - { name: 張小明, title: 堂兄, dietary: null }
+      - { name: 張美華, title: 姑姑, dietary: 素食 }
+      - { name: 張志豪, title: 堂弟, dietary: null }
+      - { name: 王淑芬, title: 姑丈, dietary: null }
+      - { name: 張雅婷, title: 表妹, dietary: null }
+      - { name: 李建宏, title: 舅舅, dietary: null }
+      - { name: 張秀英, title: 奶奶, dietary: null }
+      - { name: 張文德, title: 叔叔, dietary: null }
+      - { name: 陳玉珍, title: 嬸嬸, dietary: null }
+      - { name: 張家豪, title: 堂弟, dietary: null }
+      - { name: 張佳琪, title: 堂妹, dietary: null }
+      - { name: 李淑華, title: 舅媽, dietary: null }
+      - { name: 張浩然, title: 表弟, dietary: null }
+      - { name: 張雅芳, title: 表姐, dietary: null }
+      - { name: 王大明, title: 姑丈二, dietary: null }
+      - { name: 張怡君, title: 表妹, dietary: null }
+      - { name: 張子軒, title: 堂弟, dietary: null }
+      - { name: 李婉容, title: 舅媽二, dietary: null }
+      - { name: 張婷婷, title: 堂妹, dietary: null }
+      - { name: 張偉倫, title: 叔公, dietary: null }
+
+  - group: 女方親友
+    priority: 3
+    members:
+      - { name: 林志偉, title: 哥哥, dietary: null }
+      - { name: 林淑芬, title: 嫂嫂, dietary: null }
+      - { name: 林小宇, title: 姪子, dietary: null }
+      - { name: 陳美玲, title: 阿姨, dietary: 素食 }
+      - { name: 陳建志, title: 姨丈, dietary: null }
+      - { name: 陳雅琪, title: 表姐, dietary: null }
+      - { name: 林秀蘭, title: 外婆, dietary: null }
+      - { name: 陳文彬, title: 舅舅, dietary: null }
+      - { name: 林雅萍, title: 表妹, dietary: null }
+      - { name: 陳怡如, title: 舅媽, dietary: null }
+      - { name: 林宗翰, title: 表弟, dietary: null }
+      - { name: 陳淑娟, title: 阿姨二, dietary: null }
+      - { name: 林佩琪, title: 表姐, dietary: null }
+      - { name: 陳冠宇, title: 表弟, dietary: null }
+      - { name: 林雅文, title: 表妹, dietary: null }
+      - { name: 陳家豪, title: 姨丈二, dietary: null }
+      - { name: 林欣怡, title: 堂姐, dietary: null }
+      - { name: 陳俊廷, title: 表弟, dietary: null }
+      - { name: 林雅惠, title: 堂妹, dietary: null }
+      - { name: 陳志豪, title: 表哥, dietary: null }
+
+  - group: 同事
+    priority: 4
+    members:
+      - { name: 黃威翔, title: 主管, dietary: null }
+      - { name: 陳威, title: 經理, dietary: null }
+      - { name: 吳佳穎, title: 同事, dietary: null }
+      - { name: 蔡宗翰, title: 同事, dietary: null }
+      - { name: 鄭雅婷, title: 同事, dietary: null }
+      - { name: 許志偉, title: 同事, dietary: null }
+      - { name: 周美玲, title: 同事, dietary: null }
+      - { name: 劉建宏, title: 同事, dietary: null }
+      - { name: 林怡君, title: 同事, dietary: null }
+      - { name: 王俊傑, title: 同事, dietary: null }
+      - { name: 趙雅芳, title: 同事, dietary: null }
+      - { name: 謝志豪, title: 同事, dietary: null }
+      - { name: Sakura Tanaka, title: Director, dietary: null }
+      - { name: 李素珍, title: 專員, dietary: 素食 }
+      - { name: 黃家豪, title: 同事, dietary: null }
+      - { name: 楊淑芬, title: 同事, dietary: null }
+      - { name: 廖建志, title: 同事, dietary: null }
+      - { name: 郭雅琪, title: 同事, dietary: null }
+      - { name: 徐怡萱, title: 同事, dietary: null }
+      - { name: 何宗翰, title: 同事, dietary: null }
+
+  - group: 朋友
+    priority: 5
+    members:
+      - { name: 洪偉傑, title: 大學同學, dietary: null }
+      - { name: 方雅婷, title: 大學同學, dietary: null }
+      - { name: 葉志偉, title: 大學同學, dietary: null }
+      - { name: 呂佳蓉, title: 大學同學, dietary: null }
+      - { name: 邱建宏, title: 高中同學, dietary: null }
+      - { name: 潘美玲, title: 高中同學, dietary: null }
+      - { name: 盧俊廷, title: 高中同學, dietary: null }
+      - { name: 蕭怡君, title: 高中同學, dietary: null }
+      - { name: 鍾志豪, title: 球隊隊友, dietary: null }
+      - { name: 范雅芳, title: 球隊隊友, dietary: null }
+      - { name: 游家豪, title: 球隊隊友, dietary: null }
+      - { name: 馬淑芬, title: 新娘閨蜜, dietary: null }
+      - { name: 宋建志, title: 新郎死黨, dietary: null }
+      - { name: 賴雅琪, title: 新娘閨蜜, dietary: null }
+      - { name: 柯怡萱, title: 新娘同學, dietary: null }
+      - { name: 彭宗翰, title: 新郎同學, dietary: null }
+      - { name: 溫志偉, title: 新郎同學, dietary: null }
+      - { name: 田佳穎, title: 新娘同學, dietary: null }
+      - { name: 童雅婷, title: 新娘同學, dietary: null }
+      - { name: 石俊傑, title: 新郎同學, dietary: null }
+      - { name: 孫美玲, title: 新娘同事, dietary: null }
+      - { name: 江建宏, title: 鄰居, dietary: null }
+      - { name: 夏怡君, title: 鄰居, dietary: null }
+      - { name: 秦志豪, title: 鄰居, dietary: null }
+      - { name: 韓雅芳, title: 新郎同事, dietary: null }
+      - { name: 魏家豪, title: 新郎同事, dietary: null }
+      - { name: 高淑芬, title: 新娘同事, dietary: null }
+      - { name: 曾建志, title: 大學學長, dietary: null }
+      - { name: 蘇雅琪, title: 大學學姐, dietary: null }
+      - { name: 鄒怡萱, title: 讀書會朋友, dietary: null }
+      - { name: 龔宗翰, title: 讀書會朋友, dietary: null }
+      - { name: 嚴志偉, title: 健身教練, dietary: null }
