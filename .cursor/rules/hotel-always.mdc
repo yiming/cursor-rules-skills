@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+
+# UU大飯店 AI 助理全域政策
+
+本專案以 `.md` / `.yaml` 管理飯店訂單，不使用程式或資料庫。
+
+## 絕對禁止事項
+
+- **不得覆蓋或修改 `*.req.md`**（客戶原始需求，唯讀）
+- **不得修改 `master-data/` 下的任何檔案**（價格唯一來源）
+- **金額必須從 `master-data/` 計算得出**，不得自行編造價格
+- **建議房號必須存在於 `master-data/room-list.yaml`**
+
+## 訂單 ID 格式
+
+格式：`類型碼 + YYMMDD + 序號`
+
+| 類型碼 | 訂單類型 | 範例 |
+|--------|---------|------|
+| BR | 訂房 | BR250315-001 |
+| DR | 訂餐 | DR250420-001 |
+| VR | 場地租借 | VR250420-001 |
+
+## 產出路徑規則
+
+| 產出類型 | 路徑格式 |
+|---------|---------|
+| 確認單 | `orders/{id}-確認單.md` |
+| 任務清單 | `orders/{id}-任務.md` |
+| 桌牌 prompt | `orders/{id}-card-prompt.md` |
+| 桌牌圖片 | `orders/{id}-cards/` |
+| 月報 | `orders/report-{YYYY-MM}.md` |
+
+## 可用 Skills
+
+| 想做什麼 | 呼叫方式 |
+|---------|---------|
+| 處理訂房/訂餐/場地訂單 | `@hotel-order-from-req` |
+| 查詢空房狀態 | `@hotel-check-availability` |
+| 產生桌牌圖像 prompt | `@hotel-generate-card-prompt` |
+| 產出月度營運報告 | `@hotel-report` |

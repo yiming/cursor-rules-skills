@@ -39,6 +39,7 @@
 | 產生桌牌 prompt | print-designer（子代理） | `/generate-card-prompt [id]` |
 | 驗證確認單 | auditor（子代理） | 處理完成後自動委派 |
 | 查詢空房 | `/check-availability` | 使用者直接呼叫 |
+| 產出營運報告 | 經理直接執行 | `/report [YYYY-MM]` |
 
 ## 信任邊界
 
@@ -74,6 +75,12 @@
         └─→ print-designer → 讀取桌次表 → 產出 card-prompt.md → 交 Cursor+Gemini 產圖
 ```
 
+### 營運報告
+```
+使用者：/report 2025-04
+  └─→ 掃描所有確認單 → 篩選月份 → 聚合統計 → 產出 report-2025-04.md（含 Mermaid 圖表）
+```
+
 ## 目錄結構
 
 ```
@@ -98,8 +105,12 @@
 │   │   │       └── task-list.md
 │   │   ├── generate-card-prompt/          ← /generate-card-prompt 指令
 │   │   │   └── SKILL.md                   ← AI-to-AI 接力 prompt 產出
-│   │   └── check-availability/            ← /check-availability 指令
-│   │       └── SKILL.md                   ← 含動態上下文注入
+│   │   ├── check-availability/            ← /check-availability 指令
+│   │   │   └── SKILL.md                   ← 含動態上下文注入
+│   │   └── report/                        ← /report 指令
+│   │       ├── SKILL.md                   ← 月度營運報告（含 Mermaid）
+│   │       └── templates/
+│   │           └── monthly-report.md
 │   └── agents/
 │       ├── order-clerk.md                 ← 訂單處理員（sonnet, Read+Write）
 │       ├── auditor.md                     ← 稽核員（haiku, Read-only）

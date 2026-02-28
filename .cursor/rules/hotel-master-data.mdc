@@ -1,0 +1,83 @@
+---
+globs: master-data/**
+alwaysApply: false
+---
+
+# Master Data 保護規則
+
+此目錄為飯店營運基礎資料，是所有訂單計算的**唯一價格來源**。
+
+## 唯讀保護
+
+- **不得修改任何檔案**
+- 修改前須確認不影響已產出的訂單
+- 新增資料時確保 ID 不與既有資料重複
+
+## 檔案結構說明
+
+### `room-types.yaml` — 房型定義
+
+```
+room_types[]:
+  id            房型代碼（如 STD-D）
+  name          房型名稱
+  capacity      最大入住人數
+  price_per_night  每晚價格（元）
+  note          備註
+
+options[]:
+  id            選項代碼
+  name          選項名稱
+  price         單價（元）
+  unit          計價單位（如 每人/日）
+```
+
+### `room-list.yaml` — 房號清單
+
+```
+rooms[]:
+  room_type     對應 room-types.yaml 的 id
+  floor         樓層
+  number        房號（字串，如 "301"）
+```
+
+### `menu.yaml` — 餐飲品項
+
+```
+config:
+  minimum_charge      每人低消（元）
+
+meals[]:              正餐/套餐
+drinks[]:             飲料
+snacks[]:             點心
+
+各品項欄位：
+  id, name, price, type, note
+```
+
+### `venues.yaml` — 場地定義
+
+```
+config:
+  minimum_venue_charge    場地最低消費（元）
+  table_capacity_round    圓桌每桌人數
+  vip_table_capacity      主桌人數
+  card_style_default      預設桌牌風格
+
+venues[]:
+  id, name, type, floor
+  capacity_theater        劇院式容量
+  capacity_banquet        宴會式容量
+  capacity_classroom      教室式容量
+  price_per_session       每場次基本費
+  sessions[]:
+    id, name, time
+    price_multiplier      全日場倍率（如 2.5）
+
+banquet_menus[]:
+  id, name
+  price_per_person        每人餐標（元）
+
+options[]:
+  id, name, price, unit   加購選項
+```

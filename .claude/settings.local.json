@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:cursor.com)",
-      "WebFetch(domain:alexop.dev)"
+      "WebFetch(domain:alexop.dev)",
+      "Bash(wc -l \"d:/dev/test/cursor-rules-skills/pure-claude-approach/orders/\"*.md)"
     ]
   }
 }

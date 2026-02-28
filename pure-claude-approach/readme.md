@@ -50,8 +50,12 @@ pure-claude-approach/
 │   │   │       └── task-list.md
 │   │   ├── generate-card-prompt/
 │   │   │   └── SKILL.md                   ← 桌牌 prompt（AI-to-AI 接力）
-│   │   └── check-availability/
-│   │       └── SKILL.md                   ← 查空房（展示動態注入）
+│   │   ├── check-availability/
+│   │   │   └── SKILL.md                   ← 查空房（展示動態注入）
+│   │   └── report/
+│   │       ├── SKILL.md                   ← 月度營運報告（含 Mermaid）
+│   │       └── templates/
+│   │           └── monthly-report.md
 │   └── agents/                            ← 團隊成員
 │       ├── order-clerk.md                 ← 訂單處理員（sonnet）
 │       ├── auditor.md                     ← 稽核員（haiku）
@@ -112,6 +116,14 @@ pure-claude-approach/
 ```
 
 Skill 載入時動態掃描現有訂單 + master-data，列出可用房間。
+
+### 產出月報
+
+```
+/report 2025-04
+```
+
+流程：掃描所有確認單 → 篩選月份 → 聚合統計 → 產出 `report-2025-04.md`（含 Mermaid 圖表：營收結構、房型分布、場地使用）
 
 ### 手動處理
 

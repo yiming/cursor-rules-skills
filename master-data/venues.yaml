@@ -1,0 +1,148 @@
+# 場地定義與計價（場地租借用）
+# 此檔為場地價格唯一真實來源，所有確認單金額須可追溯至此
+
+# === 營業規則 ===
+config:
+  minimum_venue_charge: 15000    # 場地最低消費（元），含餐飲可折抵
+  table_capacity_round: 10       # 圓桌每桌人數
+  table_capacity_rectangle: 8    # 長桌每桌人數
+  vip_table_capacity: 8          # 主桌人數（圓桌，較寬敞）
+  card_style_default: 中國水墨風  # 預設桌牌風格
+
+# === 場地 ===
+venues:
+  - id: VN-GRAND
+    name: 大宴會廳
+    type: 宴會廳
+    floor: 1
+    capacity_theater: 200        # 劇院式座位
+    capacity_banquet: 150        # 圓桌宴會（15 桌 × 10 人）
+    capacity_classroom: 100      # 教室式
+    price_per_session: 30000
+    sessions:
+      - id: morning
+        name: 上午場
+        time: "08:00-12:00"
+      - id: afternoon
+        name: 下午場
+        time: "13:00-17:00"
+      - id: evening
+        name: 晚宴場
+        time: "18:00-22:00"
+      - id: full_day
+        name: 全日場
+        time: "08:00-22:00"
+        price_multiplier: 2.5
+    equipment:
+      - 投影機
+      - 音響系統
+      - 無線麥克風 ×2
+      - 舞台（可拆卸）
+    note: 一樓獨立入口，附專用停車場
+
+  - id: VN-ROSE
+    name: 玫瑰廳
+    type: 多功能廳
+    floor: 2
+    capacity_theater: 80
+    capacity_banquet: 60          # 6 桌 × 10 人
+    capacity_classroom: 40
+    price_per_session: 15000
+    sessions:
+      - id: morning
+        name: 上午場
+        time: "08:00-12:00"
+      - id: afternoon
+        name: 下午場
+        time: "13:00-17:00"
+      - id: evening
+        name: 晚宴場
+        time: "18:00-22:00"
+      - id: full_day
+        name: 全日場
+        time: "08:00-22:00"
+        price_multiplier: 2.5
+    equipment:
+      - 投影機
+      - 音響系統
+      - 無線麥克風 ×1
+    note: 適合中型宴會與會議
+
+  - id: VN-SKY
+    name: 星空露臺
+    type: 戶外場地
+    floor: 6
+    capacity_theater: 50
+    capacity_banquet: 40          # 4 桌 × 10 人
+    capacity_classroom: 0         # 戶外不適合教室式
+    price_per_session: 20000
+    sessions:
+      - id: afternoon
+        name: 下午場
+        time: "14:00-17:00"
+      - id: evening
+        name: 晚宴場
+        time: "18:00-22:00"
+    equipment:
+      - 便攜式音響
+      - 帳篷（可加購）
+    note: 頂樓露臺，需注意天候；雨天備案可移至玫瑰廳
+
+# === 宴會餐標 ===
+banquet_menus:
+  - id: BQ-A
+    name: 經典宴會餐
+    price_per_person: 1200
+    note: 十道式中式桌菜，含甜點飲料
+
+  - id: BQ-B
+    name: 豪華宴會餐
+    price_per_person: 1800
+    note: 十二道式精緻桌菜，含龍蝦、鮑魚
+
+  - id: BQ-C
+    name: 西式自助餐
+    price_per_person: 800
+    note: 沙拉吧＋主菜＋甜點吧，適合會議餐敘
+
+  - id: BQ-D
+    name: 下午茶派對
+    price_per_person: 500
+    note: 三層點心架＋飲料吧，適合生日派對
+
+# === 場地加購選項 ===
+options:
+  - id: opt-flower
+    name: 花藝佈置
+    price: 8000
+    unit: 每次
+
+  - id: opt-photographer
+    name: 攝影服務
+    price: 12000
+    unit: 每場（4小時）
+
+  - id: opt-led-wall
+    name: LED 背板
+    price: 5000
+    unit: 每次
+
+  - id: opt-red-carpet
+    name: 紅毯佈置
+    price: 3000
+    unit: 每次
+
+  - id: opt-tent
+    name: 帳篷加蓋（星空露臺）
+    price: 6000
+    unit: 每次
+
+  - id: opt-projector-extra
+    name: 額外投影機
+    price: 2000
+    unit: 每台
+
+  - id: opt-parking-vip
+    name: VIP 停車位
+    price: 500
+    unit: 每車

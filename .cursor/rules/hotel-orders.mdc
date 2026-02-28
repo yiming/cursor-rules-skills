@@ -1,29 +1,74 @@
 ---
-globs: orders/**/*.md,master-data/**
+globs: orders/**/*.md,orders/**/*.yaml,master-data/**
 alwaysApply: false
 ---
+
 # 飯店訂單結構契約
 
 ## 路徑約定
 
-- master data → `master-data/{類型}.yaml`（如 room-types.yaml, room-list.yaml）
-- 需求檔 → `orders/{id}.req.md`（檔名即訂單 id）
-- 產出 → `orders/{id}-確認單.md`、`orders/{id}-任務.md`
-- 報表 → `analyse/`
+| 檔案類型 | 路徑格式 |
+|---------|---------|
+| 需求檔 | `orders/{id}.req.md` |
+| 確認單 | `orders/{id}-確認單.md` |
+| 任務清單 | `orders/{id}-任務.md` |
+| 賓客名單 | `orders/{id}-名單.yaml` |
+| 報表 | `orders/report-{YYYY-MM}.md` |
 
-## .req.md 必備 YAML front matter
+## `.req.md` 必備 YAML front matter
 
-- `type`：訂房 | 訂餐 | 場地（必填）
-- `date`：訂單日期 YYYY-MM-DD（必填；訂房=入住日、訂餐=用餐日、場地=活動日）
-- `id`：與檔名一致，格式為「類型碼 + YYMMDD + 序號」（必填）
-  - 類型碼：BR=訂房、DR=訂餐、VR=場地
-  - 範例：`BR250315-001`（訂房、2025-03-15、第 1 單）
-- `guest`：訂房人／聯絡人姓名（必填）
+```yaml
+type: 訂房 | 訂餐 | 場地       # 必填
+date: YYYY-MM-DD               # 必填（訂房=入住日，訂餐=用餐日，場地=活動日）
+id: BR250315-001               # 必填，與檔名一致
+guest: 王大明                   # 必填，訂房/訂餐/訂租人姓名
+related_order: BR250315-001    # 可選：關聯的訂房單（訂餐/場地用）
+guest_list: {file}.yaml | embedded  # 可選：賓客名單來源（場地用）
+```
 
-front matter 下方為自由格式需求描述。
+## 賓客名單三種模式（場地訂單）
+
+`guest_list` front matter 決定名單來源：
+
+| guest_list 值 | 意義 | 適用場景 |
+|--------------|------|---------|
+| `{id}-名單.yaml` | 外部檔案，路徑為 `orders/{id}-名單.yaml` | 大型活動（20+ 人） |
+| `embedded` | 名單內嵌於 req.md 內文的 YAML 區塊 | 小型活動（~20 人以內） |
+| （未填） | 無名單，僅依人數處理，不執行桌次安排 | 會議等不需排桌的場景 |
+
+名單格式（無論外部或內嵌）：
+- 以 `groups` 分組，每組有 `priority` 決定排桌順序（1 = 主桌優先）
+- 每位賓客：`name`（姓名）、`title`（稱謂/職稱）、`dietary`（飲食需求，null=一般）
+
+## 確認單 YAML front matter
+
+所有確認單開頭必須有：
+```yaml
+---
+order_id: {id}
+generated_at: {YYYY-MM-DD HH:mm}
+---
+```
+此結構供月報 skill 程式化掃描使用。
 
 ## 禁止事項
 
 - 不得覆蓋或修改 `*.req.md`
 - 金額必須與 master-data 一致，不得自行編造價格
-- 建議房號必須存在於 room-list.yaml
+- 建議房號必須存在於 `master-data/room-list.yaml`
+
+## 快速操作
+
+若使用者開啟的是 `*.req.md`，可直接說「處理這張訂單」觸發 `@hotel-order-from-req`。
+
+| 想做什麼 | 說法範例 |
+|---------|---------|
+| 處理訂單 | 「處理這張訂單」或「@hotel-order-from-req @orders/BR250315-001.req.md」 |
+| 查空房 | 「查 4/20-4/22 空房」或 `@hotel-check-availability` |
+| 產生桌牌 | 「產生桌牌 prompt」或 `@hotel-generate-card-prompt` |
+| 月報 | 「產出 2025-04 月報」或 `@hotel-report` |
+
+## Skills
+
+當使用者要求「依訂單產生確認單」「產生任務清單」或處理 `orders/*.req.md` 時，
+請參照 `.cursor/skills/hotel-order-from-req/SKILL.md` 的流程執行。
