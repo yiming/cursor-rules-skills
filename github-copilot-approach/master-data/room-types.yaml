@@ -1,0 +1,30 @@
+# 房型與加購選項（訂房用）
+# 房型欄位：id, name, capacity, price_per_night, note
+# 選項欄位：id, name, price, unit
+
+room_types:
+  - id: STD-D
+    name: 標準雙人房
+    capacity: 2
+    price_per_night: 3200
+    note: 一大床，含早餐
+  - id: DEL-T
+    name: 豪華雙床房
+    capacity: 3
+    price_per_night: 3800
+    note: 兩小床，可加床，含早餐
+  - id: FAM-Q
+    name: 家庭四人房
+    capacity: 4
+    price_per_night: 4800
+    note: 兩大床，可加床，不含早餐
+
+options:
+  - id: opt-breakfast
+    name: 早餐
+    price: 200
+    unit: 每人/日
+  - id: opt-parking
+    name: 車位
+    price: 300
+    unit: 每車/日

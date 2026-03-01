@@ -1,0 +1,17 @@
+{
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "tools": ["write_file", "edit_file", "create_file", "str_replace_editor", "str_replace_based_edit_tool"],
+      "matcher": {
+        "path_patterns": [
+          "orders/*.req.md",
+          "master-data/**/*.yaml",
+          "master-data/*.yaml"
+        ]
+      },
+      "action": "block",
+      "message": "🚫 唯讀保護：req.md 與 master-data 不可修改。\n\n請改為：\n- 訂房/訂餐/場地需求 → 執行 /hotel-order-from-req 產出 {id}-確認單.md 與 {id}-任務.md\n- 查詢空房 → 執行 /hotel-check-availability"
+    }
+  ]
+}

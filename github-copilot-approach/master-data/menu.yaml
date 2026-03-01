@@ -1,0 +1,87 @@
+# 餐飲品項與價格（訂餐用）
+
+# === 營業規則 ===
+config:
+  minimum_charge: 300          # 每人低消（元）
+  minimum_charge_note: 飲料、點心可計入低消
+
+# === 正餐 / 套餐 ===
+meals:
+  - id: BF-A
+    name: 中式早餐
+    price: 350
+    type: 早餐
+    note: 稀飯、小菜、蛋
+
+  - id: BF-B
+    name: 西式早餐
+    price: 400
+    type: 早餐
+    note: 麵包、沙拉、炒蛋、咖啡
+
+  - id: DN-A
+    name: 主廚套餐
+    price: 1200
+    type: 晚餐
+    note: 前菜＋主菜＋甜點
+
+  - id: DN-B
+    name: 火鍋套餐（2人份）
+    price: 1800
+    type: 晚餐
+    note: 含肉品拼盤、蔬菜盤、飲料
+
+  - id: TEA-A
+    name: 英式下午茶（2人份）
+    price: 800
+    type: 下午茶
+    note: 三層點心架＋紅茶
+
+# === 飲料 ===
+drinks:
+  - id: DK-01
+    name: 美式咖啡
+    price: 120
+    type: 飲料
+
+  - id: DK-02
+    name: 拿鐵
+    price: 150
+    type: 飲料
+
+  - id: DK-03
+    name: 紅茶 / 綠茶
+    price: 80
+    type: 飲料
+
+  - id: DK-04
+    name: 柳橙汁
+    price: 100
+    type: 飲料
+
+  - id: DK-05
+    name: 生啤酒
+    price: 180
+    type: 飲料
+
+# === 點心 ===
+snacks:
+  - id: SN-01
+    name: 手工餅乾拼盤
+    price: 150
+    type: 點心
+
+  - id: SN-02
+    name: 水果盤
+    price: 200
+    type: 點心
+
+  - id: SN-03
+    name: 起司蛋糕（片）
+    price: 180
+    type: 點心
+
+  - id: SN-04
+    name: 綜合堅果
+    price: 120
+    type: 點心
